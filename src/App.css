@@ -1,4 +1,16 @@
-.App {
+.btn-circle {
+  line-height: normal;
+  display: block;
+  border-radius: 50%;
+}
+
+/* overwrite the class to prevent layout shifting each time a field gets error and resolve it */
+.invalid-feedback {
+  display: block;
+  min-height: 30px;
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +47,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
