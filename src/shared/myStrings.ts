@@ -1,3 +1,5 @@
+import { MyConstants } from "./Constants";
+
 export class MyStrings {
   static readonly admin_home_btn_owner = "مالک ها";
   static readonly admin_home_btn_tenant = "مستأجران";
@@ -22,13 +24,21 @@ export class MyStrings {
   static readonly form_user_email = "ایمیل";
   static readonly form_user_position = "سمت";
   static readonly form_user_house = "شماره واحد";
-  static readonly form_user_required_error = "این فیلد باید پر شود";
+  static readonly form_required_error = "این فیلد باید پر شود";
   static readonly form_user_email_error = "فرمت ایمیل صحیح نمی باشد";
-  static readonly form_user_short_error = "شماره تلفن حداقل 8 رقم می باشد";
-  static readonly form_user_long_error = "شماره تلفن حداکثر 11 رقم می باشد";
+  static readonly form_user_short_error =
+    "تعداد ارقام شماره تلفن بیشتر می باشد";
+  static readonly form_user_long_error = "تعداد ارقام شماره تلفن کمتر می باشد";
   static readonly form_user_number_error = "شماره تلفن در فرمت مناسب نیست";
   static readonly form_user_submit_create = "اضافه";
   static readonly form_user_submit_update = "ثبت تغییرات";
   static readonly form_user_dropdown = "انتخاب خانه";
   static readonly form_user_delete = "حذف";
+  static readonly form_login_id_short = "کد ملی شما طولانی تر می باشد";
+  static readonly form_login_id_long = "کد ملی شما کوتاهتر می باشد";
+  static readonly form_login_pass_short = `رمزحداقل  ${MyConstants.minPassLength} کاراکتر می باشد`;
+  static readonly form_login_pass_long = `رمز حداکثر  ${MyConstants.maxPassLength} کاراکتر می باشد`;
+  static readonly form_login_id = "کد ملی";
+  static readonly form_login_pass = "رمز عبور";
+  static readonly form_login_submit = "ورود";
 }

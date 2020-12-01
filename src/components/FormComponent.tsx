@@ -19,6 +19,7 @@ import {
 import * as yup from "yup";
 import { MyStrings } from "../shared/myStrings";
 import { Loading } from "./LoadingComponent";
+import { MyConstants } from "../shared/Constants";
 
 type MyProps = {
   role: Role;
@@ -46,14 +47,14 @@ const mySchema = yup.object().shape({
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       MyStrings.form_user_email_error
     ),
-  firstName: yup.string().required(MyStrings.form_user_required_error),
-  lastName: yup.string().required(MyStrings.form_user_required_error),
+  firstName: yup.string().required(MyStrings.form_required_error),
+  lastName: yup.string().required(MyStrings.form_required_error),
   phone: yup
     .string()
-    .required(MyStrings.form_user_required_error)
+    .required(MyStrings.form_required_error)
     .matches(/^(([0-9\+]{0,1})([0-9]+))$/, MyStrings.form_user_number_error)
-    .min(8, MyStrings.form_user_short_error)
-    .max(11, MyStrings.form_user_long_error),
+    .min(MyConstants.minPhoneLength, MyStrings.form_user_short_error)
+    .max(MyConstants.maxPhoneLength, MyStrings.form_user_long_error),
 });
 
 function ModalForm(props: MyProps): JSX.Element {

@@ -8,6 +8,7 @@ import {
 import { Role } from "../../shared/models";
 import AdminHomeComponent from "../admin-home/AdminHomeComponent";
 import { AdminUserComponent } from "../admin-user/AdminUserComponent";
+import LoginComponent from "../login/LoginComponent";
 
 type MyProps1 = {};
 
@@ -40,6 +41,7 @@ class MainComponent extends Component<MyProps> {
               <AdminUserComponent role={Role.staff}></AdminUserComponent>
             )}
           />
+          <Route path="/login" component={LoginComponent} />
           <Route path="/admin" component={AdminHomeComponent} />
         </Switch>
       </Fragment>

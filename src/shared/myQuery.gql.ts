@@ -53,9 +53,15 @@ export class myGQL {
     }
   `;
 
-  static DELETE_USER2 = gql`
-    mutation {
-      deleteUser(userId: "5fbfc40db825270500ab2edb")
+  static LOGIN = gql`
+    mutation Login($nationalNO: String!, $password: String!) {
+      login(nationalNO: $nationalNO, password: $password) {
+        accessToken
+        user {
+          firstName
+          lastName
+        }
+      }
     }
   `;
 }
