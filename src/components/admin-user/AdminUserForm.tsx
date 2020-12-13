@@ -4,11 +4,11 @@ import {
   Role,
   userInput,
   userUpdateInput,
-} from "../shared/models";
+} from "../../shared/models";
 import React, { Fragment, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import { useMutation } from "@apollo/client";
-import { myGQL } from "../shared/myQuery.gql";
+import { myGQL } from "../../shared/myQuery.gql";
 import {
   Dropdown,
   DropdownItem,
@@ -17,9 +17,9 @@ import {
   Label,
 } from "reactstrap";
 import * as yup from "yup";
-import { MyStrings } from "../shared/myStrings";
-import { Loading } from "./LoadingComponent";
-import { MyConstants } from "../shared/Constants";
+import { MyStrings } from "../../shared/myStrings";
+import { Loading } from "../LoadingComponent";
+import { MyConstants } from "../../shared/Constants";
 
 type MyProps = {
   role: Role;
@@ -30,6 +30,7 @@ type MyProps = {
 
 let initForm: userInput | userUpdateInput = {
   _id: "",
+  nationalNO: "",
   firstName: "",
   lastName: "",
   email: "",
@@ -47,6 +48,10 @@ const mySchema = yup.object().shape({
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       MyStrings.form_user_email_error
     ),
+  nationalNO: yup
+    .string()
+    .required(MyStrings.form_required_error)
+    .matches(/^([0-9]+)$/, MyStrings.form_user_national_error),
   firstName: yup.string().required(MyStrings.form_required_error),
   lastName: yup.string().required(MyStrings.form_required_error),
   phone: yup
@@ -57,11 +62,12 @@ const mySchema = yup.object().shape({
     .max(MyConstants.maxPhoneLength, MyStrings.form_user_long_error),
 });
 
-function ModalForm(props: MyProps): JSX.Element {
+function UserForm(props: MyProps): JSX.Element {
   let myQueryCommand = myGQL.CREATE_USER;
   if (props.user) {
     initForm = {
       _id: props.user._id,
+      nationalNO: props.user.nationalNO,
       firstName: props.user.firstName,
       lastName: props.user.lastName,
       email: props.user.email,
@@ -71,6 +77,18 @@ function ModalForm(props: MyProps): JSX.Element {
       houseId: props.user.house._id,
     };
     myQueryCommand = myGQL.UPDATE_USER;
+  } else {
+    initForm = {
+      _id: "",
+      nationalNO: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      position: "",
+      houseId: "",
+      role: "",
+    };
   }
 
   const [minitForm, setMinitForm] = useState(initForm);
@@ -99,6 +117,7 @@ function ModalForm(props: MyProps): JSX.Element {
             variables: {
               userInput: {
                 _id: props.user?._id,
+                nationalNO: values.nationalNO,
                 firstName: values.firstName,
                 lastName: values.lastName,
                 phone: values.phone,
@@ -114,6 +133,34 @@ function ModalForm(props: MyProps): JSX.Element {
       >
         {({ errors, touched }): JSX.Element => (
           <Form>
+            <div>
+              <Label htmlFor="nationalNO">
+                {MyStrings.form_user_nationalNO}
+              </Label>
+              <Field
+                type="text"
+                className={
+                  errors.nationalNO && touched.nationalNO
+                    ? "form-control is-invalid"
+                    : "form-control"
+                }
+                placeholder=""
+                id="nationalNO"
+                name="nationalNO"
+              />
+              <div
+                style={{
+                  visibility:
+                    errors.nationalNO && touched.nationalNO
+                      ? "visible"
+                      : "hidden",
+                }}
+                className="invalid-feedback"
+              >
+                &nbsp;
+                {errors.nationalNO}
+              </div>
+            </div>
             <div>
               <Label htmlFor="firstName">{MyStrings.form_user_firstname}</Label>
               <Field
@@ -273,4 +320,4 @@ function ModalForm(props: MyProps): JSX.Element {
   );
 }
 
-export default ModalForm;
+export default UserForm;

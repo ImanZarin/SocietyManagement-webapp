@@ -15,9 +15,10 @@ export class MyStrings {
   static readonly admin_user_table_2 = "نام خانوادگی";
   static readonly admin_user_table_3 = "تلفن";
   static readonly admin_user_table_4 = "ایمیل";
-  static readonly admin_user_new_header_owner = "فرم مالک جدید";
-  static readonly admin_user_new_header_tenant = "فرم مستأجر جدید";
-  static readonly admin_user_new_header_staff = "فرم کارمند جدید";
+  static readonly admin_user_modal_header_owner = "فرم مالک ";
+  static readonly admin_user_modal_header_tenant = "فرم مستأجر ";
+  static readonly admin_user_modal_header_staff = "فرم کارمند ";
+  static readonly form_user_nationalNO = "کد ملی";
   static readonly form_user_firstname = "نام";
   static readonly form_user_lastname = "نام خانوادگی";
   static readonly form_user_phone = "تلفن";
@@ -29,6 +30,7 @@ export class MyStrings {
   static readonly form_user_short_error =
     "تعداد ارقام شماره تلفن بیشتر می باشد";
   static readonly form_user_long_error = "تعداد ارقام شماره تلفن کمتر می باشد";
+  static readonly form_user_national_error = "کد ملی در فرمت مناسب نیست";
   static readonly form_user_number_error = "شماره تلفن در فرمت مناسب نیست";
   static readonly form_user_submit_create = "اضافه";
   static readonly form_user_submit_update = "ثبت تغییرات";
@@ -41,4 +43,24 @@ export class MyStrings {
   static readonly form_login_id = "کد ملی";
   static readonly form_login_pass = "رمز عبور";
   static readonly form_login_submit = "ورود";
+  static readonly admin_election_table_1 = "عنوان";
+  static readonly admin_election_table_2 = "شروع";
+  static readonly admin_election_table_3 = "پایان";
+  static readonly admin_election_table_4 = "نتایج";
+  static readonly admin_election_modal_header = "فرم انتخابات";
+  static readonly admin_election_form_title = "عنوان رای گیری";
+  static readonly admin_election_form_start = "زمان شروع";
+  static readonly admin_election_form_end = "زمان پایان";
+  static readonly admin_election_form_submit = "ثبت";
+  static readonly admin_election_form_delete = "حذف";
+  static readonly admin_election_form_options = "گزینه ها";
+  static readonly admin_election_form_new_placeholder = "گزینه جدید";
+  static readonly admin_election_form_new_error = "گزینه ها نباید تکراری باشند";
+  static readonly user_persoanl_national = "کد ملی";
+  static readonly user_personal_email = "ایمیل";
+  static readonly user_personal_phone = "تلفن";
+  static readonly user_personal_houseNO = "شماره واحد";
+  static readonly user_personal_title = "اطلاعات شخصی";
+  static readonly user_election_title = "انتخابات جاری";
+  static readonly user_modal_election_submit = "ثبت رای";
 }

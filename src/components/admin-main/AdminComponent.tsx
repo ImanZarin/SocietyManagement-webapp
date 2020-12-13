@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { MyStorage } from "../../shared/Enums";
 import { MyStrings } from "../../shared/myStrings";
 
-function AdminHomeComponent(): JSX.Element {
+function AdminComponent(): JSX.Element {
   const history = useHistory();
   return (
     <div className="row mt-3">
@@ -42,7 +42,7 @@ function AdminHomeComponent(): JSX.Element {
       </button>
       <button
         className="btn btn-primary btn-large btn-block col-5 mr-auto  ml-auto mt-5"
-        onClick={() => history.push("/admin/")}
+        onClick={() => history.push("/admin/election")}
       >
         {MyStrings.admin_home_btn_election}
       </button>
@@ -50,4 +50,4 @@ function AdminHomeComponent(): JSX.Element {
   );
 }
 
-export default AdminHomeComponent;
+export default AdminComponent;

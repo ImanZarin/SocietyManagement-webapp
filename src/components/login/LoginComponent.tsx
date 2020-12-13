@@ -6,6 +6,7 @@ import { Label } from "reactstrap";
 import * as yup from "yup";
 import { MyConstants } from "../../shared/Constants";
 import { MyStorage } from "../../shared/Enums";
+import { IUser } from "../../shared/models";
 import { myGQL } from "../../shared/myQuery.gql";
 import { MyStrings } from "../../shared/myStrings";
 import { Loading } from "../LoadingComponent";
@@ -30,12 +31,14 @@ const mySchema = yup.object().shape({
 
 function LoginComponent(): JSX.Element {
   const history = useHistory();
-  const [loginUser, { loading, error, data }] = useMutation(myGQL.LOGIN);
+  const [loginUser, { loading, error, data }] = useMutation<
+    { login: { user: IUser; accessToken: string } },
+    any
+  >(myGQL.LOGIN);
   if (loading) return <Loading />;
   if (error) return <div>my error is: {error.message}</div>;
   if (data) {
-    localStorage.setItem(MyStorage.token, data.accessToken);
-    console.log(data);
+    localStorage.setItem(MyStorage.token, data.login.accessToken);
     if (localStorage.getItem(MyStorage.prePg))
       history.push(localStorage.getItem(MyStorage.prePg) as string);
     else history.push("/home");

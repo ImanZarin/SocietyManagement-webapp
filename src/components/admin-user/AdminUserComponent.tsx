@@ -4,7 +4,7 @@ import { Role, IUser, IHouse } from "../../shared/models";
 import { MyStrings } from "../../shared/myStrings";
 import { Loading } from "../LoadingComponent";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
-import ModalForm from "../FormComponent";
+import UserForm from "./AdminUserForm";
 import { myGQL } from "../../shared/myQuery.gql";
 
 type MyProps = {
@@ -86,7 +86,10 @@ export function AdminUserComponent(props: MyProps) {
         </table>
         <button
           className="btn btn-outline-primary m-auto btn-circle"
-          onClick={() => setModalOpen(true)}
+          onClick={() => {
+            setCurrentUser(undefined);
+            setModalOpen(true);
+          }}
         >
           +
         </button>
@@ -98,13 +101,13 @@ export function AdminUserComponent(props: MyProps) {
         >
           <ModalHeader>
             {props.role === "owner"
-              ? MyStrings.admin_user_new_header_owner
+              ? MyStrings.admin_user_modal_header_owner
               : props.role === "tenant"
-              ? MyStrings.admin_user_new_header_tenant
-              : MyStrings.admin_user_new_header_staff}
+              ? MyStrings.admin_user_modal_header_tenant
+              : MyStrings.admin_user_modal_header_staff}
           </ModalHeader>
           <ModalBody>
-            <ModalForm
+            <UserForm
               role={props.role}
               successForm={() => {
                 window.location.reload();

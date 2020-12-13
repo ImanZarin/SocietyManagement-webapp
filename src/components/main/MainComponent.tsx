@@ -6,9 +6,11 @@ import {
   RouteComponentProps,
 } from "react-router-dom";
 import { Role } from "../../shared/models";
-import AdminHomeComponent from "../admin-home/AdminHomeComponent";
+import AdminElection from "../admin-election/AdminElectionComponent";
+import AdminComponent from "../admin-main/AdminComponent";
 import { AdminUserComponent } from "../admin-user/AdminUserComponent";
 import LoginComponent from "../login/LoginComponent";
+import { ProfileComponent } from "../user-main/ProfileComponent";
 
 type MyProps1 = {};
 
@@ -41,8 +43,10 @@ class MainComponent extends Component<MyProps> {
               <AdminUserComponent role={Role.staff}></AdminUserComponent>
             )}
           />
+          <Route path="/admin/election" component={AdminElection} />
           <Route path="/login" component={LoginComponent} />
-          <Route path="/admin" component={AdminHomeComponent} />
+          <Route path="/profile" component={ProfileComponent} />
+          <Route path="/admin" component={AdminComponent} />
         </Switch>
       </Fragment>
     );

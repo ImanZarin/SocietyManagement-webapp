@@ -8,7 +8,6 @@ export class myGQL {
         lastName
         email
         phone
-        position
         _id
         house {
           _id
@@ -63,5 +62,83 @@ export class myGQL {
         }
       }
     }
+  `;
+
+  static GET_ELECTIONS = gql`
+    query {
+      elections {
+        _id
+        title
+        start
+        end
+        options {
+          name
+        }
+      }
+    }
+  `;
+
+  static CREATE_ELECTION = gql`
+    mutation CreateElection($election: ElectionInput!) {
+      createElection(election: $election)
+    }
+  `;
+
+  static DELETE_ELECTION = gql`
+    mutation DeleteElection($id: String!) {
+      deleteElection(id: $id)
+    }
+  `;
+
+  static GET_PROFILE = gql`
+    query {
+      vote {
+        elections {
+          _id
+          title
+          options {
+            name
+            percent
+          }
+          end
+          start
+        }
+        votes {
+          electionId
+          vote
+        }
+      }
+      user {
+        firstName
+        lastName
+        phone
+        email
+        nationalNO
+        house {
+          flatNo
+        }
+      }
+    }
+  `;
+
+  static VOTE_UPDATE = gql`
+  mutation Vote($voteInput: VoteInput!){
+    updateVote(voteInput: $voteInput) {
+      elections {
+        _id
+        title
+        options {
+          name
+          percent
+        }
+        end
+        start
+      }
+      votes {
+        electionId
+        vote
+      }
+    }
+  }
   `;
 }
