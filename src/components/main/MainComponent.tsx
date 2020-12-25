@@ -6,6 +6,7 @@ import {
   RouteComponentProps,
 } from "react-router-dom";
 import { Role } from "../../shared/models";
+import { AdminDoc } from "../admin-doc/AdminDocComponent";
 import AdminElection from "../admin-election/AdminElectionComponent";
 import AdminComponent from "../admin-main/AdminComponent";
 import { AdminUserComponent } from "../admin-user/AdminUserComponent";
@@ -44,6 +45,7 @@ class MainComponent extends Component<MyProps> {
             )}
           />
           <Route path="/admin/election" component={AdminElection} />
+          <Route path="/admin/doc" component={AdminDoc} />
           <Route path="/login" component={LoginComponent} />
           <Route path="/profile" component={ProfileComponent} />
           <Route path="/admin" component={AdminComponent} />

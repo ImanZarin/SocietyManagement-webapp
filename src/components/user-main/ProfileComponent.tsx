@@ -65,14 +65,17 @@ export function ProfileComponent(props: MyProps): JSX.Element {
                 className="row"
               >
                 <div className="col-3">{e.title}</div>
-                <div className="col-3">{ConvertDateToIranPersian(e.start)}</div>
-                <div className="col-3">{ConvertDateToIranPersian(e.end)}</div>
+                <div className="col-2">{ConvertDateToIranPersian(e.start)}</div>
+                <div className="col-2">{ConvertDateToIranPersian(e.end)}</div>
                 <div className="col-3">
                   {e.options.map((option) => (
                     <div key={option.name}>
                       {option.name}:&nbsp;{option.percent}%
                     </div>
                   ))}
+                </div>
+                <div className="col-2">
+                  {data.vote.votes.find((el) => el.electionId === e._id)!.vote}
                 </div>
               </div>
             );

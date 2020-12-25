@@ -51,7 +51,9 @@ const mySchema = yup.object().shape({
   nationalNO: yup
     .string()
     .required(MyStrings.form_required_error)
-    .matches(/^([0-9]+)$/, MyStrings.form_user_national_error),
+    .matches(/^([0-9]+)$/, MyStrings.form_user_national_error)
+    .min(MyConstants.minPhoneLength, MyStrings.form_user_national_short)
+    .max(MyConstants.maxPhoneLength, MyStrings.form_user_national_long),
   firstName: yup.string().required(MyStrings.form_required_error),
   lastName: yup.string().required(MyStrings.form_required_error),
   phone: yup

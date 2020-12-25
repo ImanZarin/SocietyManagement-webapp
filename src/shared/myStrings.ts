@@ -31,6 +31,8 @@ export class MyStrings {
     "تعداد ارقام شماره تلفن بیشتر می باشد";
   static readonly form_user_long_error = "تعداد ارقام شماره تلفن کمتر می باشد";
   static readonly form_user_national_error = "کد ملی در فرمت مناسب نیست";
+  static readonly form_user_national_short = `کد حداقل  ${MyConstants.minNationalLength} رقم می باشد`;
+  static readonly form_user_national_long = `کد حداکثر  ${MyConstants.maxNationalLength} رقم می باشد`;
   static readonly form_user_number_error = "شماره تلفن در فرمت مناسب نیست";
   static readonly form_user_submit_create = "اضافه";
   static readonly form_user_submit_update = "ثبت تغییرات";
@@ -63,4 +65,15 @@ export class MyStrings {
   static readonly user_personal_title = "اطلاعات شخصی";
   static readonly user_election_title = "انتخابات جاری";
   static readonly user_modal_election_submit = "ثبت رای";
+  static readonly admin_doc_modal_header = "خبر جدید";
+  static readonly admin_doc_form_title = "عنوان";
+  static readonly admin_doc_form_title_placeholder = "فقط از عکسهای زیر 1 مگابایت با فرمت jpg و png استفاده شود";
+  static readonly admin_doc_form_desc = "متن";
+  static readonly admin_doc_form_image = "عکس";
+  static readonly admin_doc_form_image_select = "انتخاب عکس";
+  static readonly admin_doc_form_image_error = "سایز عکس انتخابی باید کمتر از 1 مگابایت باشد";
+  static readonly admin_doc_table_title2 = "عنوان";
+  static readonly admin_doc_form_submit1 = "ثبت جدید";
+  static readonly admin_doc_form_submit2 = "ثبت تغییرات";
+  static readonly admin_doc_form_delete = "حذف";
 }

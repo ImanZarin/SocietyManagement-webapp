@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export enum Role {
   owner = "owner",
   tenent = "tenant",
@@ -73,4 +75,24 @@ export type Vote = {
 export type VoteElection = {
   elections: IElection[];
   votes: Vote[]; 
+}
+
+export type TImage = {
+  data: string;
+  contentType: ImageTypes;
+  name: string;
+}
+
+export type TDoc = {
+  _id: string | undefined;
+  title: string | undefined;
+  description: string | undefined;
+  image: TImage | undefined | null;
+  duration: number | undefined;
+}
+
+export enum ImageTypes {
+  jpeg = 'jpeg',
+  png = 'png',
+  jpg = 'jpg',
 }

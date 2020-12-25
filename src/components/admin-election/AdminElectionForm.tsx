@@ -367,7 +367,6 @@ export function ElectionForm(props: MyProps): JSX.Element {
             const op = myform.options?.map((item) => {
               return { name: item };
             });
-            console.log("title is: ", myform.title);
             createOrDeleteElection({
               variables: {
                 election: {

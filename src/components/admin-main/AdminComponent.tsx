@@ -34,8 +34,7 @@ function AdminComponent(): JSX.Element {
       <button
         className="btn btn-primary btn-large btn-block col-5 mr-auto ml-auto mt-5"
         onClick={() => {
-          localStorage.setItem(MyStorage.prePg, "/admin");
-          history.push("/login");
+          history.push("/admin/doc");
         }}
       >
         {MyStrings.admin_home_btn_news}

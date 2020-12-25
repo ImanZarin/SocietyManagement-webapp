@@ -122,23 +122,49 @@ export class myGQL {
   `;
 
   static VOTE_UPDATE = gql`
-  mutation Vote($voteInput: VoteInput!){
-    updateVote(voteInput: $voteInput) {
-      elections {
-        _id
-        title
-        options {
-          name
-          percent
+    mutation Vote($voteInput: VoteInput!) {
+      updateVote(voteInput: $voteInput) {
+        elections {
+          _id
+          title
+          options {
+            name
+            percent
+          }
+          end
+          start
         }
-        end
-        start
-      }
-      votes {
-        electionId
-        vote
+        votes {
+          electionId
+          vote
+        }
       }
     }
-  }
+  `;
+
+  static GET_Docs = gql`
+    query {
+      docs {
+        title
+        image {
+          data
+          contentType
+          name
+        }
+        _id
+        description
+      }
+    }
+  `;
+
+  static DOC_CREATE_UPDATE = gql`
+    mutation createAndUpdateDoc($docInput: DocInput!) {
+      createAndUpdateDoc(docInput: $docInput)
+    }
+  `;
+  static DOC_DELETE = gql`
+    mutation deleteDoc($id: String!) {
+      deleteDoc(id: $id)
+    }
   `;
 }

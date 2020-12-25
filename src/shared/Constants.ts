@@ -1,3 +1,5 @@
+import { TImage } from "./models";
+
 export class MyConstants {
   //form validations
   static readonly minPassLength = 4;
@@ -6,6 +8,9 @@ export class MyConstants {
   static readonly maxIdLength = 16;
   static readonly minPhoneLength = 8;
   static readonly maxPhoneLength = 11;
+  static readonly minNationalLength = 6;
+  static readonly maxNationalLength = 11;
+  static readonly maxImageSize = 1050000; // 1mb
   //
 }
 
@@ -63,8 +68,7 @@ export function PersianDateToUTC(
   else monthD2day = 60 + 29 + 6 * 31 + (monthD - 9) * 31;
   console.log("ends with: ", yearD, monthD2day, dayD, Math.floor(yearD / 4));
   return (
-    ((yearD * 365 + monthD2day + dayD + Math.floor(yearD / 4)) * 24 +
-      hour) *
+    ((yearD * 365 + monthD2day + dayD + Math.floor(yearD / 4)) * 24 + hour) *
     60 *
     60 *
     1000
@@ -72,16 +76,34 @@ export function PersianDateToUTC(
 }
 
 export function DateSeperator(date: string): string[] {
-  var separators = [' ', '\\\+', '،', '\\\(', '\\\)', '\\*', '/', ':', '\\\?'];
-  var tokens = date.split(new RegExp(separators.join('|'), 'g'));
+  var separators = [" ", "\\+", "،", "\\(", "\\)", "\\*", "/", ":", "\\?"];
+  var tokens = date.split(new RegExp(separators.join("|"), "g"));
   return tokens;
 }
 
 export function ParseIntFromPersian(str: string): number {
-  const persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
-  for(let i=0; i<10; i++)
-    {
-      str = str.replace(persianNumbers[i], i.toString());
-    }
+  const persianNumbers = [
+    /۰/g,
+    /۱/g,
+    /۲/g,
+    /۳/g,
+    /۴/g,
+    /۵/g,
+    /۶/g,
+    /۷/g,
+    /۸/g,
+    /۹/g,
+  ];
+  for (let i = 0; i < 10; i++) {
+    str = str.replace(persianNumbers[i], i.toString());
+  }
   return parseInt(str);
+}
+
+export function ConvertToSrc(img: TImage | null | undefined): string {
+  if (img)
+    return (
+      "data:" + img.contentType + ";base64," + Buffer.from(img.data!, "base64")
+    );
+  else return ""; //default img
 }
