@@ -1,26 +1,20 @@
-import { Fragment, useState } from "react";
-import React from "react";
+import React , { Fragment } from "react";
 import { useQuery } from "@apollo/client";
 import { myGQL } from "../../shared/myQuery.gql";
 import { Loading } from "../LoadingComponent";
-import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import { MyStrings } from "../../shared/myStrings";
-import { DocForm } from "./AdminDocForm";
 import { TDoc } from "../../shared/models";
 import { ConvertToSrc } from "../../shared/Constants";
+import { useHistory } from "react-router-dom";
 
 type MyProps = {};
 
-export function AdminDoc(props: MyProps): JSX.Element {
-  const [modalOpen, setModalOpen] = useState(false);
+export function DocumentsComponent(props: MyProps): JSX.Element {
   const { loading, error, data } = useQuery<{ docs: TDoc[] }>(myGQL.GET_Docs);
-  const [currentDoc, setCurrentDoc]: [TDoc | null, any] = useState(null);
+  const history = useHistory();
   if (loading) return <Loading />;
   if (error) console.log(error);
   if (data) {
-    //const myBase64 = Buffer.from(data.docs[0].image.data, "base64");
-    //console.log(myBase64);
-    //const sourceImg = "data:image/jpeg;base64," + data.docs[0].image?.data;
     return (
       <Fragment>
         <table className="table table-hover">
@@ -36,8 +30,7 @@ export function AdminDoc(props: MyProps): JSX.Element {
                 <tr
                   key={d._id}
                   onClick={() => {
-                    setCurrentDoc(d);
-                    setModalOpen(true);
+                    history.push("/documents/" + d._id);
                   }}
                 >
                   <td>
@@ -53,21 +46,6 @@ export function AdminDoc(props: MyProps): JSX.Element {
             })}
           </tbody>
         </table>
-        <button
-          className="btn btn-outline-primary m-auto btn-circle"
-          onClick={() => {
-            setCurrentDoc(null);
-            setModalOpen(true);
-          }}
-        >
-          +
-        </button>
-        <Modal isOpen={modalOpen} toggle={() => setModalOpen(false)}>
-          <ModalHeader>{MyStrings.admin_doc_modal_header}</ModalHeader>
-          <ModalBody>
-            <DocForm myDoc={currentDoc} />
-          </ModalBody>
-        </Modal>
       </Fragment>
     );
   }

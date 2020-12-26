@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { MyStorage } from "../../shared/Enums";
 import { MyStrings } from "../../shared/myStrings";
 
 function AdminComponent(): JSX.Element {

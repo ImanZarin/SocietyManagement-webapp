@@ -2,7 +2,7 @@ import { TDoc, ImageTypes } from "../../shared/models";
 import React, { useState } from "react";
 import { Input, Label } from "reactstrap";
 import { MyStrings } from "../../shared/myStrings";
-import { MyConstants } from "../../shared/Constants";
+import { MyConstants, styleMap } from "../../shared/Constants";
 import { myGQL } from "../../shared/myQuery.gql";
 import { useMutation } from "@apollo/client";
 import { Loading } from "../LoadingComponent";
@@ -48,28 +48,6 @@ export function DocForm(props: MyProps): JSX.Element {
       id: props.myDoc?._id,
     },
   });
-  const styleMap: DraftStyleMap = {
-    H1: {
-      fontFamily: '"Times New Roman"',
-      fontSize: 32,
-      fontWeight: "normal",
-    },
-    H2: {
-      fontFamily: '"Times New Roman"',
-      fontSize: 24,
-      fontWeight: "normal",
-    },
-    H3: {
-      fontFamily: '"Times New Roman"',
-      fontSize: 18,
-      fontWeight: "normal",
-    },
-    H4: {
-      fontFamily: '"Times New Roman"',
-      fontSize: 16,
-      fontWeight: "normal",
-    },
-  };
   if (loading) return <Loading />;
   if (error) console.log(error);
   if (data) {

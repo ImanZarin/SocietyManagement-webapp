@@ -1,3 +1,4 @@
+import { DraftStyleMap } from "draft-js";
 import { TImage } from "./models";
 
 export class MyConstants {
@@ -107,3 +108,27 @@ export function ConvertToSrc(img: TImage | null | undefined): string {
     );
   else return ""; //default img
 }
+
+//H styles for rich text editor
+export const styleMap: DraftStyleMap = {
+  H1: {
+    fontFamily: '"Times New Roman"',
+    fontSize: 32,
+    fontWeight: "normal",
+  },
+  H2: {
+    fontFamily: '"Times New Roman"',
+    fontSize: 24,
+    fontWeight: "normal",
+  },
+  H3: {
+    fontFamily: '"Times New Roman"',
+    fontSize: 18,
+    fontWeight: "normal",
+  },
+  H4: {
+    fontFamily: '"Times New Roman"',
+    fontSize: 16,
+    fontWeight: "normal",
+  },
+};

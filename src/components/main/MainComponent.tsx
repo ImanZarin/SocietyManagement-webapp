@@ -10,6 +10,9 @@ import { AdminDoc } from "../admin-doc/AdminDocComponent";
 import AdminElection from "../admin-election/AdminElectionComponent";
 import AdminComponent from "../admin-main/AdminComponent";
 import { AdminUserComponent } from "../admin-user/AdminUserComponent";
+import { DocumentComponent } from "../document/DocumentComponent";
+import { DocumentsComponent } from "../document/DocumentsComponent";
+import { HomeComponent } from "../home/HomeComponent";
 import LoginComponent from "../login/LoginComponent";
 import { ProfileComponent } from "../user-main/ProfileComponent";
 
@@ -49,6 +52,9 @@ class MainComponent extends Component<MyProps> {
           <Route path="/login" component={LoginComponent} />
           <Route path="/profile" component={ProfileComponent} />
           <Route path="/admin" component={AdminComponent} />
+          <Route path="/documents/:id" component={DocumentComponent} />
+          <Route path="/documents" component={DocumentsComponent} />
+          <Route path="/" component={HomeComponent} />
         </Switch>
       </Fragment>
     );

@@ -167,4 +167,33 @@ export class myGQL {
       deleteDoc(id: $id)
     }
   `;
+
+  static GET_DOC = gql`
+    query doc($docId: String!) {
+      doc(docId: $docId) {
+        title
+        image {
+          data
+          contentType
+          name
+        }
+        _id
+        description
+      }
+    }
+  `;
+
+  static GET_RECENT_Docs = gql`
+    query {
+      docs(last:3) {
+        title
+        image {
+          data
+          contentType
+          name
+        }
+        _id
+      }
+    }
+  `;
 }
