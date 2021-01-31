@@ -1,0 +1,15 @@
+version: "3.4"
+services:
+  app-front:
+    container_name: society-management-client
+    restart: always
+    build: .
+    entrypoint: ["npm", "start"]
+    networks:
+      - sm
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+networks:
+  sm:
